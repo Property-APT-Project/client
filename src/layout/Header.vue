@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "../stores/user";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -21,9 +21,12 @@ const closeSidebar = () => {
 };
 
 const router = useRouter();
+const route = useRoute();
+
 const handleNavItemClicked = (path, item) => {
   activeNavItem.value = item;
   closeSidebar();
+  console.log(path);
   if (path) {
     router.push(path);
   }
@@ -69,6 +72,32 @@ function handleLogout() {
       });
   });
 }
+
+const updateActiveNavItem = () => {
+  const currentPath = route.path;
+  if (currentPath === "/" || currentPath.startsWith("/root")) {
+    activeNavItem.value = "main";
+  } else if (currentPath.startsWith("/apt")) {
+    activeNavItem.value = "apt";
+  } else if (
+    currentPath.startsWith("/community") ||
+    currentPath.startsWith("/posts")
+  ) {
+    activeNavItem.value = "community";
+  } else if (currentPath.startsWith("/my-feed")) {
+    activeNavItem.value = "myFeed";
+  } else {
+    activeNavItem.value = "";
+  }
+};
+
+onMounted(() => {
+  updateActiveNavItem();
+});
+
+watch(route, () => {
+  updateActiveNavItem();
+});
 </script>
 
 <template>

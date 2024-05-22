@@ -13,16 +13,18 @@ export const usePostStore = defineStore("post", {
     hasMore: true,
   }),
   actions: {
-    async fetchPosts() {
+    async fetchPosts(sortField = this.sortField, sortOrder = this.sortOrder) {
       if (this.loading || !this.hasMore) return;
       this.loading = true;
+      this.sortField = sortField; // 선택된 정렬 기준 업데이트
+      this.sortOrder = sortOrder; // 선택된 정렬 순서 업데이트
       return axios
         .get(VITE_APP_API_POST, {
           params: {
             _page: this.page,
             _limit: this.limit,
-            _sort: "create_time",
-            _order: "desc",
+            _sort: this.sortField,
+            _order: this.sortOrder,
           },
         })
         .then((response) => {

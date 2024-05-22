@@ -58,7 +58,7 @@ function formatDate(dateString) {
         class="badge text-bg-light text-dark fs-2 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0"
         >2 min Read</span
       > -->
-      <img
+      <!-- <img
         :src="`${VITE_APP_API_MEMBER_UPLOAD}/${post.profileImgURL}`"
         alt="matdash-img"
         class="rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9"
@@ -67,23 +67,29 @@ function formatDate(dateString) {
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         data-bs-title="Georgeanna Ramero"
-      />
+      /> -->
     </div>
     <div class="card-body p-4">
       <router-link
         :to="{ name: 'postDetail', params: { id: post.id } }"
-        class="d-block my-4 fs-5 text-dark fw-semibold link-primary"
+        class="d-block omyu_pretty my-4 mt-n1 fs-5 text-dark text-center fw-semibold link-primary"
         href=""
         >{{ post.title }}</router-link
       >
 
-      <div class="d-flex align-items-center gap-4">
+      <div class="d-flex align-items-center gap-3">
         <div class="d-flex align-items-center gap-2">
           <i class="ti ti-eye text-dark fs-5"></i> {{ post.hit }}
         </div>
         <div class="d-flex align-items-center gap-2">
           <i class="ti ti-message-2 text-dark fs-5"></i>
           {{ post.comments.length }}
+        </div>
+        <div>
+          <div class="d-flex align-items-center gap-1 like clickable">
+            <i class="fas fa-thumbs-up"></i>
+            {{ post.like }}
+          </div>
         </div>
         <div class="d-flex align-items-center fs-2 ms-auto">
           <i class="ti ti-point text-dark"></i>
@@ -130,8 +136,8 @@ function formatDate(dateString) {
 }
 
 .post-image {
-  width: 100%;
-  height: auto;
+  height: 100%;
+  max-height: 25vh;
 
   object-fit: cover; /* 이미지가 잘리지 않도록 설정 */
 }

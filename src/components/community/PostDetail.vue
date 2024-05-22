@@ -258,7 +258,7 @@ const handleDelete = () => {
                 alt="avatar"
               />
               <hr />
-              <h1 class="text-center display-1">{{ postDetail.title }}</h1>
+              <h1 class="text-center">{{ postDetail.title }}</h1>
               <!-- <hr /> -->
             </div>
             <div class="card-body pt-0">
@@ -299,6 +299,7 @@ const handleDelete = () => {
                     placeholder="댓글을 여기에 작성하세요..."
                     rows="3"
                     required
+                    @keydown.enter="handleCommentSubmit"
                   ></textarea>
                 </div>
                 <div class="d-flex justify-content-end">
