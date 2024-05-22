@@ -40,15 +40,14 @@ const postStore = usePostStore();
 // });
 
 const fetchPosts = () => {
-  axios
-    .get(VITE_APP_API_POST)
-    .then((response) => {
-      posts.value = response.data;
-      console.log(posts.value);
-    })
-    .catch((error) => {
-      console.error("Error fetching posts:", error);
-    });
+  const sortField =
+    sortOption.value === "popular"
+      ? "hit"
+      : sortOption.value === "liked"
+      ? "like"
+      : "create_time";
+  const sortOrder = "desc";
+  postStore.fetchPosts(sortField, sortOrder);
 };
 </script>
 
