@@ -45,30 +45,17 @@ function formatDate(dateString) {
 <template>
   <div class="">
     <div class="position-relative">
-      <router-link :to="{ name: 'postDetail', params: { id: post.id } }">
+      <router-link :to="{ name: 'postDetail', params: { id: post.id } }" style="height: 70%;">
         <a href="javascript:void(0)">
           <img
             :src="`${VITE_APP_API_POST_UPLOAD}/${post.imgURL}`"
             class="post-image"
             alt="matdash-img"
-            style="width: 100%;"
+            style="width: 300px; height: 600px;"
           />
         </a>
       </router-link>
-      <!-- <span
-        class="badge text-bg-light text-dark fs-2 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0"
-        >2 min Read</span
-      > -->
-      <!-- <img
-        :src="`${VITE_APP_API_MEMBER_UPLOAD}/${post.profileImgURL}`"
-        alt="matdash-img"
-        class="rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9"
-        width="40"
-        height="40"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        data-bs-title="Georgeanna Ramero"
-      /> -->
+
     </div>
     <div class="card-body p-4 pb-0">
       <router-link

@@ -35,7 +35,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="card card-group card-group-scroll">
+  <div class="card-group card-group-scroll">
     <!-- <div class="card"> -->
     <PostCardFeed v-for="post in posts" :key="post.id" :post="post" />
     <!-- </div> -->

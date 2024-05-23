@@ -204,7 +204,7 @@ const coordinate = {
           :sale="sale"
         />
       </div>
-      <div v-else class="card-group card-group-scroll">
+      <div v-else class="card-group card-group-scroll" style="margin-bottom: 10%">
         <ComplexInterestCard
           class="me-3"
           v-for="complex in interestComplexList"
@@ -214,6 +214,7 @@ const coordinate = {
       </div>
       
       <h2 class="p-0 mt-3 mb-3">나의 글</h2>
+      
       <MyFeedPostList style="font-family: KCC-Hanbit;" />
     </div>
   </div>
