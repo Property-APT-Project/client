@@ -169,8 +169,8 @@ const coordinate = {
 
 <template>
   <div class="body-wrapper ms-0 me-0">
-    <div class="body-wrapper-inner mb-6 container-fluid w-100">
-      <h1 class="p-0 mt-3 mb-0 omyu_pretty">관심 매물 / 단지</h1>
+    <div class="body-wrapper-inner mb-6 container-fluid w-100" style="font-family: KCC-Hanbit;">
+      <h2 class="p-0 mt-3 mb-0">관심 매물 / 단지</h2>
 
       <nav class="tap d-flex justify-content-end">
         <ul class="nav nav-tabs">
@@ -212,9 +212,9 @@ const coordinate = {
           :complex="complex"
         />
       </div>
-
-      <h1 class="p-0 mt-3 mb-4 omyu_pretty">나의 글</h1>
-      <MyFeedPostList />
+      
+      <h2 class="p-0 mt-3 mb-3">나의 글</h2>
+      <MyFeedPostList style="font-family: KCC-Hanbit;" />
     </div>
   </div>
 </template>

@@ -31,27 +31,6 @@ const handleNavItemClicked = (path, item) => {
 
 const { VITE_APP_API_MEMBER_UPLOAD, VITE_APP_LOGOUT } = import.meta.env;
 function handleLogout() {
-  // const tokenCookie = Cookies.get("authToken");
-  // const token = JSON.parse(tokenCookie);
-  // console.log(token);
-  // axios
-  //   .post(VITE_APP_LOGOUT, null, {
-  //     headers: {
-  //       Authorization: "Bearer " + token.accessToken,
-  //     },
-  //   })
-  //   .then((response) => {
-  //     console.log("로그아웃 완료");
-  //     console.log(response.data);
-  //     Cookies.remove("authToken");
-  //     // TODO
-  //     router.replace({ name: "root" });
-  //   })
-  //   .catch((error) => {
-  //     console.log("로그아웃 실패");
-  //     console.error("Error:", error);
-  //     // router.replace({ name: "community" });
-  //   });
 
   userStore.logout().then(() => {
     Swal.fire({
@@ -89,7 +68,14 @@ function handleLogout() {
             <span class="navbar-toggler-icon"></span>
           </button>
           <a href="/" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/logo.svg" alt="" />
+            <div class="row">
+              <div class="col-4 p-1"><img src="@/assets/icons/main-icon.png" height="40px" width="40px" /></div>
+              <div class="col-8 d-flex justify-content-center p-0 align-items-center">
+                <h3 class="d-flex justify-content-center align-items-center"style="font-family: 'yg-jalnan'; color: cornflowerblue; margin-bottom: 0;">이집어때. </h3>
+              </div>
+              
+            </div>
+            
           </a>
         </div>
 
@@ -263,5 +249,20 @@ function handleLogout() {
 
 .shadow-sm {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HSSanTokki20-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405@1.0/HSSanTokki20-Regular.woff2') format('woff2');
+    font-weight:lighter;
+    font-style: normal;
+    
 }
 </style>
