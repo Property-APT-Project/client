@@ -34,7 +34,7 @@
                   style="font-size: 20px; border: none"
                   @click="navigateToAptMap"
                 >
-                  검색
+                  <span style="font-family: KCC-Hanbit;">검색</span>
                 </button>
               </div>
             </div>

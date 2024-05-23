@@ -68,11 +68,12 @@ const fetchApartments = async () => {
 </script>
 
 <template>
-  <div>
-    <div class="mb-5 d-flex justify-content-center text-black">
-      <svg
-        width="41"
-        height="41"
+  <div class="container mb-3 mt-3" style="margin-top: 100%;">
+    <div class="row align-items-center mt-3">
+      <div class="row col-auto text-black mt-3 mb-3">
+        <svg
+        width="50"
+        height="50"
         viewBox="0 0 41 41"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -85,9 +86,13 @@ const fetchApartments = async () => {
           fill="currentColor"
         ></path>
       </svg>
-      beta
+      </div>
+      <div class="col-auto p-0 mt-3">
+        <h2 style="font-family: KCC-Hanbit;">Chat GPT가 해주는 매물 추천!</h2>
+      </div>
     </div>
-    <div class="row d-flex text-nowrap gap-0 justify-content-center">
+
+    <div class="row d-flex text-nowrap gap-0 justify-content-center mt-3">
       <div class="col-3">
         <button
           class="btn btn-light w-100 rounded-pill p-2 text-primary"
@@ -169,7 +174,7 @@ const fetchApartments = async () => {
                   style="font-size: 20px; border: none"
                   @click="navigateToAptMap"
                 >
-                  검색
+                  <span style="font-family: KCC-Hanbit;">검색</span>
                 </button>
               </div>
             </div>

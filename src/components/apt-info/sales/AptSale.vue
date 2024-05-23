@@ -99,18 +99,20 @@ function changeState() {
   <li class="sidebar-item mb-3 me-3 pe-3">
     <div class="row bg-gray p-3" style="background-color: white">
       <div class="col-5 d-flex">
-        <a class="clickable" @click="goToDetail">
+        <a class="container clickable justify-content-center p-0" @click="goToDetail">
           <img
             v-if="info.img1 != '@/assets/images/no-image.jpeg'"
             class="rounded w-100 align-middle"
             :src="info.img1"
             alt="prd1"
+            height="100px;"
           />
           <img
             v-else
             class="rounded w-100 align-middle"
             src="@/assets/images/no-image.jpeg"
             alt="prd1"
+            height="100px;"
           />
         </a>
       </div>

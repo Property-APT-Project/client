@@ -9,11 +9,19 @@ import GptSearchBar from "@/components/gpt/GptSearchBar.vue";
   <div class="body-wrapper ms-0 me-0">
     <div class="body-wrapper-inner mb-6 container-fluid w-100">
       <search-bar />
-      <gpt-search-bar />
+      
       <rank-list />
+      <gpt-search-bar />
       <news-list />
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style >
+@font-face {
+    font-family: 'KCC-Hanbit';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>

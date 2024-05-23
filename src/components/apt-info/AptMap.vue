@@ -2,7 +2,7 @@
 import FocusedMap from "@/components/common/FocusedMap.vue";
 import { ref, watch, computed } from 'vue';
 import axios from 'axios';
-import { KakaoMap, KakaoMapMarker } from "vue3-kakao-maps";
+import { KakaoMap, KakaoMapMarker, KakaoMapCustomOverlay } from "vue3-kakao-maps";
 const { VITE_APP_DATA_SERVICE_KEY } = import.meta.env;
 
 const props = defineProps({
@@ -10,6 +10,65 @@ const props = defineProps({
   selectLat: String,
   selectLng: String
 });
+
+const visibleRef = ref(false);
+const currItem = ref()
+const currLat = ref()
+const currLng = ref()
+const contents = ref()
+const imgPath = ref()
+
+const onClickKakaoMapMarker = (marker) => {
+  console.log("Marker clicked:", marker);
+  visibleRef.value = !visibleRef.value;
+  currItem.value = marker;
+  console.log(currItem.value);
+  lat.value = currItem.value.lat;
+  lng.value = currItem.value.lng;
+  currLat.value = currItem.value.lat;
+  currLng.value = currItem.value.lng;
+  imgPath.value = "https://d1774jszgerdmk.cloudfront.net/512/default_img_horizon.png";
+  if(currItem.value.thumbImg != '@/assets/images/no-image.jpeg')
+    imgPath.value = currItem.value.thumbImg;
+
+  contents.value = getContentsWindow(currItem.value)
+  console.log(visibleRef.value)
+  console.log(lat.value, lng.value);
+};
+
+
+
+const getContentsWindow = (item) => {
+  return `
+
+<div class="row bg-gray p-3" style="background-color: white; width: 300px;">
+
+  <div class="col-5 d-flex">
+    <div class="col-5 d-flex w-100" style="object-fit: cover;">
+      <a class="" href="#" @click="clickComplexButton(info)">
+        <img class="rounded w-100 align-middle"
+          src="${imgPath.value}" alt="prd1" />
+      </a>
+    </div>
+  </div>
+  <div class="col-7 m-0">
+    <div class="row">
+      <div class="col-9">
+        <h5 class="omyu_pretty">${ item.aptName }</h5>
+        
+      </div>
+
+      
+
+    </div>
+
+    <div class="col-3 p-0 m-0 align-items-center w-100">
+      <h6 class="mt-2">${ item.address }</h6>
+    </div>
+
+  </div>
+</div>`
+};
 
 const isSelectedI2 = ref(false);
 const isSelectedP1 = ref(false);
@@ -66,7 +125,6 @@ const complexDongGroupList = ref([])
 const emit = defineEmits(['saleList', 'complexList'])
 
 const path = "http://localhost:8080/where-is-my-home/api/v1";
-
 
 
 
@@ -508,9 +566,11 @@ watch(() => props.selectLng, (newLng) => {
             imageSrc: '../../src/assets/icons/house-marker.png',
             imageWidth: 40,
             imageHeight: 40,
-            imageOption: {},
+            imageOption: {},}"
+            :clickable="true"
+            @onClickKakaoMapMarker="onClickKakaoMapMarker(item)"/>
+            <KakaoMapCustomOverlay :lat="currLat" :lng="currLng" :yAnchor="1.4" :visible="visibleRef" :content="contents" />
 
-          }"></KakaoMapMarker>
           <!-- <KakaoMapMarker :lat="coordinate.lat" :lng="coordinate.lng"></KakaoMapMarker> -->
           <span v-if="isSelectedP1">
             <KakaoMapMarker v-for="(item, index) in commericalP1" :key="index" :lat="item.lat" :lng="item.lon" :image="{
