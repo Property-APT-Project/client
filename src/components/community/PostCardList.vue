@@ -9,51 +9,10 @@ const posts = ref([]);
 const { VITE_APP_API_POST } = import.meta.env;
 
 const postStore = usePostStore();
-// const isLoading = ref(false);
-
-// const loadMorePosts = () => {
-//   if (
-//     window.innerHeight + window.scrollY >=
-//     document.documentElement.offsetHeight - 500
-//   ) {
-//     console.log("Loading...");
-//     postStore.fetchPosts().then(() => {
-//       isLoading.value = false;
-//     });
-//   }
-// };
-
-// const handleScroll = () => {
-//   if (!isLoading.value) {
-//     isLoading.value = true;
-//     loadMorePosts();
-//   }
-// };
-
-// onMounted(() => {
-//   postStore.fetchPosts();
-//   window.addEventListener("scroll", handleScroll);
-// });
-
-// onUnmounted(() => {
-//   window.removeEventListener("scroll", handleScroll);
-// });
-
-// const fetchPosts = () => {
-//   axios
-//     .get(VITE_APP_API_POST)
-//     .then((response) => {
-//       posts.value = response.data;
-//       console.log(posts.value);
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching posts:", error);
-//     });
-// };
-
 const sortOption = ref("latest");
 
 const fetchPosts = () => {
+  console.log("post");
   const sortField =
     sortOption.value === "popular"
       ? "hit"
@@ -65,11 +24,13 @@ const fetchPosts = () => {
 };
 
 onMounted(() => {
+  console.log('mounted')
   postStore.reset();
   fetchPosts();
 });
 
 watch(sortOption, () => {
+  console.log(sortOption);
   postStore.reset();
   fetchPosts();
 });

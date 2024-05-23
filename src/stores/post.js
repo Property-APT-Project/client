@@ -14,6 +14,7 @@ export const usePostStore = defineStore("post", {
   }),
   actions: {
     async fetchPosts(sortField = this.sortField, sortOrder = this.sortOrder) {
+      console.log(this.fetchPosts, sortOrder)
       if (this.loading || !this.hasMore) return;
       this.loading = true;
       this.sortField = sortField; // 선택된 정렬 기준 업데이트
@@ -28,6 +29,7 @@ export const usePostStore = defineStore("post", {
           },
         })
         .then((response) => {
+          console.log("res", response)
           if (response.data.length < this.limit) {
             this.hasMore = false;
           }
