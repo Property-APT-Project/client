@@ -51,6 +51,7 @@ function formatDate(dateString) {
             :src="`${VITE_APP_API_POST_UPLOAD}/${post.imgURL}`"
             class="post-image"
             alt="matdash-img"
+            style="width: 100%;"
           />
         </a>
       </router-link>
@@ -73,8 +74,8 @@ function formatDate(dateString) {
       <router-link
         :to="{ name: 'postDetail', params: { id: post.id } }"
         class="d-block omyu_pretty my-4 mt-n1 fs-5 text-dark text-center fw-semibold link-primary"
-        href=""
-        >{{ post.title }}</router-link
+        href="" style="font-family: KCC-Hanbit;"
+        ><h5>{{ post.title }}</h5></router-link
       >
 
       <!-- <div class="d-flex align-items-center gap-3">
