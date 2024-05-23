@@ -37,9 +37,10 @@ const fetchApartments = async () => {
           // { role: "assistant", content: "넌 부동산 데이터를 잘 아는 도우미야." },
           {
             role: "user",
-            content: `${keyword.value}와 관련된 실제 한국 아파트 이름 한개 이름 공백 없이 적어줘 `,
+            content: `${keyword.value}와 관련된 실제 한국 아파트 이름 한개 이름 공백 없이 정확하게 적어줘 뒤에 아파트는 지워줘`,
           },
         ],
+        temperature: 0.2,
         // max_tokens: 50,
         // n: 1,
         // stop: ["\n"],

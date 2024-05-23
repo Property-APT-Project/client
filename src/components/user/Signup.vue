@@ -198,6 +198,12 @@ async function sendData() {
       });
     })
     .catch((error) => {
+      Swal.fire({
+        // title: "Good job!",
+        title: "회원가입 실패",
+        text: error.response.data,
+        icon: "error",
+      });
       console.error("Error:", error);
     });
 }
@@ -306,6 +312,7 @@ const handleSubmit = () => {
                           유효한 이메일 주소를 입력하세요.
                         </div>
                       </div>
+
                       <div class="mb-2">
                         <label for="password" class="form-label"
                           >비밀번호 *</label

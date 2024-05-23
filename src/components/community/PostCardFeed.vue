@@ -69,7 +69,7 @@ function formatDate(dateString) {
         data-bs-title="Georgeanna Ramero"
       /> -->
     </div>
-    <div class="card-body p-4">
+    <div class="card-body p-4 pb-0">
       <router-link
         :to="{ name: 'postDetail', params: { id: post.id } }"
         class="d-block omyu_pretty my-4 mt-n1 fs-5 text-dark text-center fw-semibold link-primary"
@@ -77,7 +77,7 @@ function formatDate(dateString) {
         >{{ post.title }}</router-link
       >
 
-      <div class="d-flex align-items-center gap-3">
+      <!-- <div class="d-flex align-items-center gap-3">
         <div class="d-flex align-items-center gap-2">
           <i class="ti ti-eye text-dark fs-5"></i> {{ post.hit }}
         </div>
@@ -95,7 +95,7 @@ function formatDate(dateString) {
           <i class="ti ti-point text-dark"></i>
           {{ formatDate(post.createTime) }}
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -136,8 +136,7 @@ function formatDate(dateString) {
 }
 
 .post-image {
-  height: 100%;
-  max-height: 25vh;
+  max-height: 20vh;
 
   object-fit: cover; /* 이미지가 잘리지 않도록 설정 */
 }

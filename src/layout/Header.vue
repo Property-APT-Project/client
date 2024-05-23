@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted, watch } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -21,12 +21,9 @@ const closeSidebar = () => {
 };
 
 const router = useRouter();
-const route = useRoute();
-
 const handleNavItemClicked = (path, item) => {
   activeNavItem.value = item;
   closeSidebar();
-  console.log(path);
   if (path) {
     router.push(path);
   }
@@ -72,32 +69,6 @@ function handleLogout() {
       });
   });
 }
-
-const updateActiveNavItem = () => {
-  const currentPath = route.path;
-  if (currentPath === "/" || currentPath.startsWith("/root")) {
-    activeNavItem.value = "main";
-  } else if (currentPath.startsWith("/apt")) {
-    activeNavItem.value = "apt";
-  } else if (
-    currentPath.startsWith("/community") ||
-    currentPath.startsWith("/posts")
-  ) {
-    activeNavItem.value = "community";
-  } else if (currentPath.startsWith("/my-feed")) {
-    activeNavItem.value = "myFeed";
-  } else {
-    activeNavItem.value = "";
-  }
-};
-
-onMounted(() => {
-  updateActiveNavItem();
-});
-
-watch(route, () => {
-  updateActiveNavItem();
-});
 </script>
 
 <template>
@@ -175,7 +146,6 @@ watch(route, () => {
           class="profile-card p-2 shadow-sm rounded d-flex align-items-center"
         >
           <a
-            v-if="userStore.user"
             class="nav-link"
             href="javascript:void(0)"
             id="drop2"
@@ -199,21 +169,21 @@ watch(route, () => {
                 height="35"
                 class="rounded-circle"
               /> -->
-              <div class="ms-1 text-black">
+              <div v-if="userStore.user" class="ms-1 text-black">
                 {{ userStore.user.name }} 님
                 <i class="fa-solid fa-caret-down"></i>
               </div>
+
+              <router-link
+                v-else
+                :to="{ name: 'loginForm' }"
+                class="ms-1 text-black"
+              >
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span class="ms-1 me-1"> 로그인 </span>
+              </router-link>
             </div>
           </a>
-
-          <router-link
-            v-else
-            :to="{ name: 'loginForm' }"
-            class="ms-1 text-black"
-          >
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <span class="ms-1 me-1"> 로그인 </span>
-          </router-link>
 
           <div
             class="me-2 mt-n1 dropdown-menu dropdown-menu-end animate slideIn dropdown-menu-animate-up"

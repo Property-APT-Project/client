@@ -11,15 +11,16 @@ import MyFeedPostList from "@/components/my-feed/MyFeedPostList.vue";
 import Cookies from "js-cookie";
 import { useTokenStore } from "@/stores/token";
 
-const interestSaleList = ref([])
-const interestSaleIdList = ref([])
-const interestComplexList = ref([])
-const interestComplexNameList = ref([])
+const interestSaleList = ref([]);
+const interestSaleIdList = ref([]);
+const interestComplexList = ref([]);
+const interestComplexNameList = ref([]);
 
-async function getInterestSaleInfo(id){
+async function getInterestSaleInfo(id) {
   const path = `http://localhost:8080/where-is-my-home/api/v1/house-info/sale-articles/id/${id}`;
 
-  await axios.get(path)
+  await axios
+    .get(path)
     .then((response) => {
       console.log("SUCCESS Interest Sale Info");
 
@@ -30,17 +31,17 @@ async function getInterestSaleInfo(id){
       console.error("Error:");
       // router.replace({ name: "community" });
     });
-  
-
 }
 
 async function getInterestSale() {
   const tokenCookie = Cookies.get("authToken");
   const token = JSON.parse(tokenCookie);
 
-  const complexPath = "http://localhost:8080/where-is-my-home/interest/list/sale";
+  const complexPath =
+    "http://localhost:8080/where-is-my-home/interest/list/sale";
 
-  await axios.get(complexPath, {
+  await axios
+    .get(complexPath, {
       headers: {
         Authorization: "Bearer " + token.accessToken,
       },
@@ -48,7 +49,7 @@ async function getInterestSale() {
     .then((response) => {
       console.log("SUCCESS Interest Sale");
 
-      interestSaleIdList.value = response.data.map(sale => sale.interestId);
+      interestSaleIdList.value = response.data.map((sale) => sale.interestId);
 
       interestSaleIdList.value.forEach(getInterestSaleInfo);
       const tmp = ref(interestSaleList.value);
@@ -68,9 +69,11 @@ async function getInterestComplex() {
   const tokenCookie = Cookies.get("authToken");
   const token = JSON.parse(tokenCookie);
 
-  const complexPath = "http://localhost:8080/where-is-my-home/interest/list/complex";
+  const complexPath =
+    "http://localhost:8080/where-is-my-home/interest/list/complex";
 
-  await axios.get(complexPath, {
+  await axios
+    .get(complexPath, {
       headers: {
         Authorization: "Bearer " + token.accessToken,
       },
@@ -92,20 +95,21 @@ async function getInterestComplex() {
 async function getInterestComplexDetailInfo(complex) {
   const complexPath = `http://localhost:8080/where-is-my-home/api/v1/house-info/complexes/keyword/${complex}`;
 
-  await axios.get(complexPath)
+  await axios
+    .get(complexPath)
     .then((response) => {
       console.log("SUCCESS Complex Detail");
-      console.log(response.data)
+      console.log(response.data);
 
-      interestComplexNameList.value = response.data.map(complex => complex.interestId);
+      interestComplexNameList.value = response.data.map(
+        (complex) => complex.interestId
+      );
       console.log(interestComplexNameList.value);
     })
     .catch((error) => {
       console.error("Error:");
     });
 }
-
-
 
 const posts = ref([]);
 const scrollContainerRef = ref(null);
@@ -169,8 +173,7 @@ const coordinate = {
       <h1 class="p-0 mt-3 mb-0 omyu_pretty">관심 매물 / 단지</h1>
 
       <nav class="tap d-flex justify-content-end">
-         
-        <ul class="nav nav-tabs ">
+        <ul class="nav nav-tabs">
           <li class="nav-item">
             <button
               :class="{ 'nav-link': true, active: activeSale }"
@@ -189,15 +192,28 @@ const coordinate = {
           </li>
         </ul>
       </nav>
-      <div v-if="activeSale" class="card-group card-group-scroll" style="margin-bottom: 10%;">
-        <SaleInterestCard class="me-3" v-for="sale in interestSaleList" :key="sale.interestId" :sale="sale" />
-
+      <div
+        v-if="activeSale"
+        class="card-group card-group-scroll"
+        style="margin-bottom: 10%"
+      >
+        <SaleInterestCard
+          class="me-3"
+          v-for="sale in interestSaleList"
+          :key="sale.interestId"
+          :sale="sale"
+        />
       </div>
       <div v-else class="card-group card-group-scroll">
-        <ComplexInterestCard class="me-3" v-for="complex in interestComplexList" :key="complex.interestId" :complex="complex" />
+        <ComplexInterestCard
+          class="me-3"
+          v-for="complex in interestComplexList"
+          :key="complex.interestId"
+          :complex="complex"
+        />
       </div>
-      
-      <h1 class="p-0 mt-3 mb-3 omyu_pretty">나의 글</h1>
+
+      <h1 class="p-0 mt-3 mb-4 omyu_pretty">나의 글</h1>
       <MyFeedPostList />
     </div>
   </div>
