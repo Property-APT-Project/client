@@ -112,14 +112,16 @@ function handleLike() {
 }
 
 // postDetail이 업데이트될 때 commentData 설정
-watch(postDetail, (newValue) => {
-  commentData.value.userId = newValue.userId;
-  commentData.value.postId = newValue.id;
-});
+// watch(postDetail, (newValue) => {
+//   commentData.value.userId = user.userId;
+//   commentData.value.postId = newValue.id;
+// });
+
+const user = userStore.user;
 
 const commentData = ref({
-  userId: postDetail.value.userId,
-  postId: postDetail.value.postId,
+  userId: user.id,
+  postId: props.postId,
   content: "",
 });
 
@@ -135,6 +137,7 @@ const handleCommentSubmit = () => {
       },
     })
     .then((response) => {
+      console.log(response.data);
       postDetail.value.comments.push(response.data);
       commentData.value.content = ""; // 입력 필드 초기화
     })
