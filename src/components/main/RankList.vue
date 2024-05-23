@@ -59,8 +59,8 @@ getTopSearchList();
 <template>
   <div class="container mb-6 mt-3">
     <div class="row align-items-center">
-      <div class="col-auto"><img src="@/assets/icons/icon-ranking-title.png" width="40px" /></div>
-      <div class="col-auto p-0">
+      <div class="col-auto"><img src="@/assets/icons/icon-ranking-title.png" width="50px" /></div>
+      <div class="col-auto p-0" style="font-family: KCC-Hanbit;">
         <h2>
           단지 검색어 <span><b>Top3</b></span>
         </h2>
